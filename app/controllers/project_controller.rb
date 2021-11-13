@@ -1,5 +1,17 @@
 class ProjectController < ApplicationController
   def index
-    render json: { message: "ok" }
+    @projects = Project.includes(:todos)
+  end
+
+  def create
+    Todo.create(text: params[:text], project: Project.find(params[:project_id]))
+  end
+
+  def update
+    project = Project.find(params[:id])
+    todo = project.todos.find(params[:task_id])
+    todo.is_completed = !todo.is_completed
+    todo.save
+    project.save
   end
 end
