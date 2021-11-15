@@ -1,6 +1,7 @@
 class ProjectController < ApplicationController
   def index
     @projects = Project.includes(:todos)
+    @projects.to_json
   end
 
   def create
