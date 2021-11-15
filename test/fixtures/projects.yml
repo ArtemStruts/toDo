@@ -2,6 +2,8 @@
 
 one:
   title: MyString
+  todos: MyString
 
 two:
   title: MyString
+  todos: MyString

@@ -1,8 +1,8 @@
 class ProjectController < ApplicationController
 
   def index
-    @projects = Project.all
-    render json: @projects.to_json
+    @projects = Project.includes(:todos)
+    render json: @projects
   end
 
   def create
