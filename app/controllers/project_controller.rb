@@ -10,8 +10,10 @@ class ProjectController < ApplicationController
       p = Project.new(title: params[:title])
       Todo.create(text: params[:text], project: p)
     else
-      Todo.create(text: params[:text], project: Project.find(params[:project_id]))
+      p = Project.find(params[:project_id])
+      Todo.create(text: params[:text], project: p)
     end
+    render json: p
   end
 
   def update
@@ -20,5 +22,8 @@ class ProjectController < ApplicationController
     todo.is_completed = !todo.is_completed
     todo.save
     project.save
+
+    render json: todo
   end
+
 end
